@@ -9,8 +9,8 @@ def Identitymgmt():
         print("Please enter the valid parameter")
 
 
-database = {"AshMail": ["E01", "E02", "E03", "E04", "E05"],
-            "Ashdesk": ["E02", "E03"], "AshExpense": ["E05"]}
+database = {"Ashdesk": ["E02", "E03"], "AshMail": ["E01", "E02", "E03", "E04", "E05"],
+            "AshExpense": ["E05"]}
 
 
 def admin():
@@ -25,21 +25,27 @@ def admin():
 def InsertRecord():
     add_empID = input("Enter the employee ID:")
     if add_empID:
-        # for s,e in database.items():
-        #     if add_empID in e:
+        #  for s,e in database.items():
+        #      if add_empID in e:
         #         print("The Employee id",add_empID,"already in the database...")
+        #      else:
+        #          pass()
 
-
-        softwareAccess = input("Enter which software he/she has access (a)AshMail (b)Ashdesk (c)AshExpense")
-        for software in database:
+        softwareAccess = input(
+            "Enter which software he/she has access (a)AshMail (b)Ashdesk (c)AshExpense")
+        for software,eid in database:
             if software == softwareAccess:
+                for i in eid:
+                    if eid==add_empID:
+                        print("Id already having access to this software")
                 database[software].append(add_empID)
                 print("Successfully Added the employee ID", add_empID, "!")
                 admin()
 
-            else:
-                print("Sorry the entered software is not found...")
-                admin()
+        else:
+            print("Sorry the entered software is not found...")
+            admin()
+
     else:
         print("Please add a employee ID...")
         admin()
